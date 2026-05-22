@@ -5,15 +5,15 @@
     <menuitem id="menu_mcp_root"
               name="MCP AI Gateway"
               sequence="90"
-              groups="mcp_ai_gateway.group_mcp_user"
-              web_icon="mcp_ai_gateway,static/src/img/icon.png"/>
+              groups="odoo_mcp.group_mcp_user"
+              web_icon="odoo_mcp,static/src/img/icon.png"/>
 
     <!-- Configuration sub-menu (managers only) -->
     <menuitem id="menu_mcp_config"
               name="Configuration"
               parent="menu_mcp_root"
               sequence="10"
-              groups="mcp_ai_gateway.group_mcp_manager"/>
+              groups="odoo_mcp.group_mcp_manager"/>
 
     <menuitem id="menu_mcp_provider"
               name="AI Providers"
@@ -38,7 +38,7 @@
               name="Operations"
               parent="menu_mcp_root"
               sequence="20"
-              groups="mcp_ai_gateway.group_mcp_user"/>
+              groups="odoo_mcp.group_mcp_user"/>
 
     <menuitem id="menu_mcp_conversation"
               name="Conversation Log"

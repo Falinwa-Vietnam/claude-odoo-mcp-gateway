@@ -51,7 +51,7 @@
                         <group string="Connection">
                             <field name="base_url" placeholder="Leave blank for default endpoint"/>
                             <field name="api_key" password="True"
-                                   groups="mcp_ai_gateway.group_mcp_manager"/>
+                                   groups="odoo_mcp.group_mcp_manager"/>
                             <field name="timeout"/>
                         </group>
                     </group>

@@ -22,7 +22,7 @@ class McpTool(models.Model):
 
     Option B – Python decorator (recommended for module developers)::
 
-        from odoo.addons.mcp_ai_gateway.models.mcp_tool import mcp_tool
+        from odoo.addons.odoo_mcp.models.mcp_tool import mcp_tool
 
         @mcp_tool(
             name='crm_create_lead',

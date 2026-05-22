@@ -46,7 +46,7 @@ class McpProvider(models.Model):
         string='Base URL',
         help='Override the default endpoint. Leave blank to use the provider default.',
     )
-    api_key = fields.Char(string='API Key', groups='mcp_ai_gateway.group_mcp_manager')
+    api_key = fields.Char(string='API Key', groups='odoo_mcp.group_mcp_manager')
     model = fields.Char(string='Default Model', required=True, default='gpt-4o')
     timeout = fields.Integer(default=60, string='Timeout (s)')
 

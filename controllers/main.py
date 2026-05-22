@@ -147,7 +147,7 @@ class McpController(http.Controller):
 
     def _method_providers_list(self, params, api_key):
         """List providers – requires the mcp_manager group."""
-        if not request.env.user.has_group('mcp_ai_gateway.group_mcp_manager'):
+        if not request.env.user.has_group('odoo_mcp.group_mcp_manager'):
             raise PermissionError('providers/list requires MCP Manager role')
         providers = request.env['mcp.provider'].search([('active', '=', True)])
         return {

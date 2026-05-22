@@ -42,7 +42,7 @@ Key capabilities
     ],
     'assets': {
         'web.assets_backend': [
-            'mcp_ai_gateway/static/src/css/mcp.css',
+            'odoo_mcp/static/src/css/mcp.css',
         ],
     },
     'installable': True,
