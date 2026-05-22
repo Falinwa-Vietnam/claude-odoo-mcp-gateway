@@ -30,8 +30,8 @@ Key capabilities
     'license': 'LGPL-3',
     'depends': ['base', 'web', 'mail'],
     'data': [
-        'security/ir.model.access.csv',
         'security/mcp_security.xml',
+        'security/ir.model.access.csv',
         'views/mcp_provider_views.xml',
         'views/mcp_tool_views.xml',
         'views/mcp_conversation_views.xml',
