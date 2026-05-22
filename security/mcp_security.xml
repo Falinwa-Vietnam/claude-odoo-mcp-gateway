@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="module_mcp_ai_gateway" model="ir.module.category">
+            <field name="name">MCP AI Gateway</field>
+            <field name="description">Manage AI providers, tools and MCP access.</field>
+            <field name="sequence">100</field>
+        </record>
+
+        <!-- User: can trigger tools / view logs -->
+        <record id="group_mcp_user" model="res.groups">
+            <field name="name">MCP User</field>
+            <field name="category_id" ref="module_mcp_ai_gateway"/>
+            <field name="comment">Can call MCP tools and view conversation logs.</field>
+        </record>
+
+        <!-- Manager: full CRUD on providers, tools and API keys -->
+        <record id="group_mcp_manager" model="res.groups">
+            <field name="name">MCP Manager</field>
+            <field name="category_id" ref="module_mcp_ai_gateway"/>
+            <field name="implied_ids" eval="[(4, ref('group_mcp_user'))]"/>
+            <field name="comment">Full access to MCP configuration including provider credentials.</field>
+        </record>
+
+        <!-- Add managers to base Technical group for easier access -->
+        <record id="base.group_system" model="res.groups">
+            <field name="implied_ids" eval="[(4, ref('group_mcp_manager'))]"/>
+        </record>
+
+    </data>
+</odoo>

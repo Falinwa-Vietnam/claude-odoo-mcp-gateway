@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_mcp_test_wizard_form" model="ir.ui.view">
+        <field name="name">mcp.test.wizard.form</field>
+        <field name="model">mcp.test.wizard</field>
+        <field name="arch" type="xml">
+            <form string="MCP Test Wizard">
+                <group>
+                    <field name="test_type" widget="radio"/>
+                </group>
+
+                <!-- Provider test section -->
+                <group string="Provider Test"
+                       attrs="{'invisible': [('test_type','!=','provider')]}">
+                    <field name="provider_id"/>
+                    <field name="model_override" placeholder="Leave blank to use provider default"/>
+                    <field name="prompt"/>
+                </group>
+
+                <!-- Tool test section -->
+                <group string="Tool Test"
+                       attrs="{'invisible': [('test_type','!=','tool')]}">
+                    <field name="tool_id"/>
+                    <field name="tool_arguments" widget="code"
+                           options="{'mode': 'application/json'}"
+                           style="min-height: 100px;"/>
+                </group>
+
+                <!-- Result -->
+                <group string="Result"
+                       attrs="{'invisible': [('result','=',False)]}">
+                    <field name="result" nolabel="1" readonly="1"/>
+                    <field name="duration_ms" readonly="1"/>
+                </group>
+
+                <footer>
+                    <button name="action_run_test" type="object"
+                            string="Run Test" class="btn-primary"/>
+                    <button string="Close" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_mcp_test_wizard" model="ir.actions.act_window">
+        <field name="name">Test MCP</field>
+        <field name="res_model">mcp.test.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

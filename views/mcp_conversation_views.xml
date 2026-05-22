@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ── List ── -->
+    <record id="view_mcp_conversation_list" model="ir.ui.view">
+        <field name="name">mcp.conversation.list</field>
+        <field name="model">mcp.conversation</field>
+        <field name="arch" type="xml">
+            <list string="Conversation Log" create="false" edit="false"
+                  decoration-danger="status == 'error'">
+                <field name="create_date" string="Timestamp"/>
+                <field name="jsonrpc_method"/>
+                <field name="tool_name"/>
+                <field name="provider_id"/>
+                <field name="model_used"/>
+                <field name="api_key_id"/>
+                <field name="caller_ip"/>
+                <field name="status"/>
+                <field name="duration_ms"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- ── Form ── -->
+    <record id="view_mcp_conversation_form" model="ir.ui.view">
+        <field name="name">mcp.conversation.form</field>
+        <field name="model">mcp.conversation</field>
+        <field name="arch" type="xml">
+            <form string="Conversation Detail" create="false">
+                <sheet>
+                    <group>
+                        <group string="Request">
+                            <field name="create_date" string="Timestamp"/>
+                            <field name="jsonrpc_method"/>
+                            <field name="api_key_id"/>
+                            <field name="caller_ip"/>
+                        </group>
+                        <group string="Outcome">
+                            <field name="status"/>
+                            <field name="duration_ms"/>
+                            <field name="tool_id"/>
+                            <field name="provider_id"/>
+                            <field name="model_used"/>
+                        </group>
+                    </group>
+                    <group string="Request Payload">
+                        <field name="request_payload" nolabel="1" widget="code"
+                               options="{'mode': 'application/json'}" readonly="1"/>
+                    </group>
+                    <group string="Response Payload">
+                        <field name="response_payload" nolabel="1" widget="code"
+                               options="{'mode': 'application/json'}" readonly="1"/>
+                    </group>
+                    <group string="Error" attrs="{'invisible': [('error_message', '=', False)]}">
+                        <field name="error_message" nolabel="1" readonly="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- ── Search ── -->
+    <record id="view_mcp_conversation_search" model="ir.ui.view">
+        <field name="name">mcp.conversation.search</field>
+        <field name="model">mcp.conversation</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="jsonrpc_method"/>
+                <field name="tool_name"/>
+                <field name="api_key_id"/>
+                <filter string="Errors only" name="errors" domain="[('status','=','error')]"/>
+                <filter string="Today" name="today"
+                        domain="[('create_date','&gt;=', (context_today()).strftime('%Y-%m-%d'))]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Method" name="grp_method" context="{'group_by': 'jsonrpc_method'}"/>
+                    <filter string="Tool" name="grp_tool" context="{'group_by': 'tool_name'}"/>
+                    <filter string="Provider" name="grp_provider" context="{'group_by': 'provider_id'}"/>
+                    <filter string="Status" name="grp_status" context="{'group_by': 'status'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- ── Action ── -->
+    <record id="action_mcp_conversation" model="ir.actions.act_window">
+        <field name="name">Conversation Log</field>
+        <field name="res_model">mcp.conversation</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{'search_default_today': 1}</field>
+    </record>
+
+</odoo>

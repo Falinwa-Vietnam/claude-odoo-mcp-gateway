@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ── List ── -->
+    <record id="view_mcp_tool_list" model="ir.ui.view">
+        <field name="name">mcp.tool.list</field>
+        <field name="model">mcp.tool</field>
+        <field name="arch" type="xml">
+            <list string="MCP Tools" decoration-muted="not active">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="description"/>
+                <field name="model_name"/>
+                <field name="method_name"/>
+                <field name="total_calls"/>
+                <field name="total_errors" decoration-danger="total_errors &gt; 0"/>
+                <field name="last_called"/>
+                <field name="active" column_invisible="1"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- ── Form ── -->
+    <record id="view_mcp_tool_form" model="ir.ui.view">
+        <field name="name">mcp.tool.form</field>
+        <field name="model">mcp.tool</field>
+        <field name="arch" type="xml">
+            <form string="MCP Tool">
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" placeholder="tool_name (snake_case)…"/></h1>
+                    </div>
+                    <group>
+                        <group string="Identity">
+                            <field name="sequence"/>
+                            <field name="active"/>
+                            <field name="require_mcp_auth"/>
+                        </group>
+                        <group string="Implementation">
+                            <field name="model_name" placeholder="e.g. res.partner"/>
+                            <field name="method_name" placeholder="e.g. mcp_search_partners"/>
+                        </group>
+                    </group>
+                    <group string="Description">
+                        <field name="description" nolabel="1"
+                               placeholder="Natural-language description shown to the AI agent…"/>
+                    </group>
+                    <group string="Input JSON Schema">
+                        <field name="input_schema" nolabel="1" widget="code"
+                               options="{'mode': 'application/json'}"
+                               style="min-height: 180px;"/>
+                    </group>
+                    <group string="Access Control">
+                        <field name="allowed_groups" widget="many2many_tags"/>
+                    </group>
+                    <group string="Statistics" col="3">
+                        <field name="total_calls"/>
+                        <field name="total_errors"/>
+                        <field name="last_called"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- ── Action ── -->
+    <record id="action_mcp_tool" model="ir.actions.act_window">
+        <field name="name">MCP Tools</field>
+        <field name="res_model">mcp.tool</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Register your first MCP tool</p>
+            <p>
+                Each tool maps an Odoo model method to a callable function
+                exposed to AI agents over the MCP protocol.
+            </p>
+        </field>
+    </record>
+
+</odoo>

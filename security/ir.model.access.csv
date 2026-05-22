@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_mcp_provider_manager,mcp.provider manager,model_mcp_provider,mcp_ai_gateway.group_mcp_manager,1,1,1,1
+access_mcp_provider_user,mcp.provider user,model_mcp_provider,mcp_ai_gateway.group_mcp_user,1,0,0,0
+access_mcp_tool_manager,mcp.tool manager,model_mcp_tool,mcp_ai_gateway.group_mcp_manager,1,1,1,1
+access_mcp_tool_user,mcp.tool user,model_mcp_tool,mcp_ai_gateway.group_mcp_user,1,0,0,0
+access_mcp_conversation_manager,mcp.conversation manager,model_mcp_conversation,mcp_ai_gateway.group_mcp_manager,1,1,1,1
+access_mcp_conversation_user,mcp.conversation user,model_mcp_conversation,mcp_ai_gateway.group_mcp_user,1,0,0,0
+access_mcp_api_key_manager,mcp.api.key manager,model_mcp_api_key,mcp_ai_gateway.group_mcp_manager,1,1,1,1
+access_mcp_api_key_user,mcp.api.key user,model_mcp_api_key,mcp_ai_gateway.group_mcp_user,1,0,0,0
+access_mcp_test_wizard_manager,mcp.test.wizard manager,model_mcp_test_wizard,mcp_ai_gateway.group_mcp_manager,1,1,1,1
+access_mcp_test_wizard_user,mcp.test.wizard user,model_mcp_test_wizard,mcp_ai_gateway.group_mcp_user,1,1,1,1

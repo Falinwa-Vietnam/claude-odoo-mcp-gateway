@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!--
+        Seed provider records – credentials left blank intentionally.
+        Users fill in their API keys from MCP > Configuration > AI Providers.
+    -->
+
+    <record id="mcp_provider_anthropic" model="mcp.provider">
+        <field name="name">Anthropic Claude</field>
+        <field name="provider_type">anthropic</field>
+        <field name="base_url">https://api.anthropic.com/v1</field>
+        <field name="model">claude-sonnet-4-20250514</field>
+        <field name="sequence">10</field>
+        <field name="is_default">True</field>
+    </record>
+
+    <record id="mcp_provider_openai" model="mcp.provider">
+        <field name="name">OpenAI GPT-4o</field>
+        <field name="provider_type">openai</field>
+        <field name="base_url">https://api.openai.com/v1</field>
+        <field name="model">gpt-4o</field>
+        <field name="sequence">20</field>
+    </record>
+
+    <record id="mcp_provider_gemini" model="mcp.provider">
+        <field name="name">Google Gemini</field>
+        <field name="provider_type">gemini</field>
+        <field name="base_url">https://generativelanguage.googleapis.com</field>
+        <field name="model">gemini-2.0-flash</field>
+        <field name="sequence">30</field>
+    </record>
+
+    <record id="mcp_provider_ollama" model="mcp.provider">
+        <field name="name">Ollama (local)</field>
+        <field name="provider_type">ollama</field>
+        <field name="base_url">http://localhost:11434/v1</field>
+        <field name="model">llama3</field>
+        <field name="sequence">40</field>
+    </record>
+
+</odoo>

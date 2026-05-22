@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ── List ── -->
+    <record id="view_mcp_provider_list" model="ir.ui.view">
+        <field name="name">mcp.provider.list</field>
+        <field name="model">mcp.provider</field>
+        <field name="arch" type="xml">
+            <list string="AI Providers" decoration-muted="not active">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="provider_type"/>
+                <field name="model"/>
+                <field name="is_default"/>
+                <field name="total_calls"/>
+                <field name="total_errors" decoration-danger="total_errors &gt; 0"/>
+                <field name="last_used"/>
+                <field name="active" column_invisible="1"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- ── Form ── -->
+    <record id="view_mcp_provider_form" model="ir.ui.view">
+        <field name="name">mcp.provider.form</field>
+        <field name="model">mcp.provider</field>
+        <field name="arch" type="xml">
+            <form string="AI Provider">
+                <header>
+                    <button name="action_test_connection" type="object"
+                            string="Test Connection" class="btn-primary"/>
+                    <button name="action_set_default" type="object"
+                            string="Set as Default"
+                            attrs="{'invisible': [('is_default', '=', True)]}"/>
+                </header>
+                <sheet>
+                    <widget name="web_ribbon" title="Default"
+                            bg_color="bg-success"
+                            attrs="{'invisible': [('is_default', '=', False)]}"/>
+                    <div class="oe_title">
+                        <h1><field name="name" placeholder="Provider name…"/></h1>
+                    </div>
+                    <group>
+                        <group string="Identity">
+                            <field name="provider_type"/>
+                            <field name="model"/>
+                            <field name="sequence"/>
+                            <field name="active"/>
+                            <field name="is_default"/>
+                        </group>
+                        <group string="Connection">
+                            <field name="base_url" placeholder="Leave blank for default endpoint"/>
+                            <field name="api_key" password="True"
+                                   groups="mcp_ai_gateway.group_mcp_manager"/>
+                            <field name="timeout"/>
+                        </group>
+                    </group>
+                    <group string="Advanced">
+                        <field name="extra_headers" widget="code"
+                               options="{'mode': 'application/json'}"
+                               placeholder='{"X-Custom-Header": "value"}'/>
+                        <field name="extra_params" widget="code"
+                               options="{'mode': 'application/json'}"
+                               placeholder='{"temperature": 0.7}'/>
+                    </group>
+                    <group string="Statistics" col="4">
+                        <field name="total_calls"/>
+                        <field name="total_errors"/>
+                        <field name="last_used"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- ── Action ── -->
+    <record id="action_mcp_provider" model="ir.actions.act_window">
+        <field name="name">AI Providers</field>
+        <field name="res_model">mcp.provider</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{'search_default_active': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Add your first AI provider
+            </p>
+            <p>
+                Connect Claude, ChatGPT, Gemini, Ollama or any OpenAI-compatible endpoint.
+            </p>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,15 @@
+/* MCP AI Gateway – backend styles */
+
+.o_mcp_code_field {
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    font-size: 12px;
+    background: #1e1e2e;
+    color: #cdd6f4;
+    border-radius: 6px;
+    padding: 8px;
+}
+
+/* Highlight error rows in the conversation log */
+.o_list_view .o_data_row.text-danger td {
+    background-color: #fff5f5;
+}
